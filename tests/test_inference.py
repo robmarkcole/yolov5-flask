@@ -16,8 +16,7 @@ results = model(img1, size=640)  # includes NMS
 
 # Results
 results.print()  
-results.save()  # or .show()
-results.show()
+# print(results.tolist())
 
 # Data
 # print(results.xyxy[0])  # print img1 predictions (pixels)

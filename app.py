@@ -9,16 +9,8 @@ from flask import Flask, jsonify, url_for, render_template, request, redirect
 
 app = Flask(__name__)
 
-RESULT_FOLDER = os.path.join('static')
-app.config['RESULT_FOLDER'] = RESULT_FOLDER
-
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True, force_reload=True).autoshape()  # for PIL/cv2/np inputs and NMS
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True).autoshape()  # force_reload=True
 model.eval()
-
-def get_prediction(img_bytes):
-    img = Image.open(io.BytesIO(img_bytes))
-    results = model(img, size=640)  # includes NMS
-    return results
 
 @app.route('/', methods=['GET', 'POST'])
 def predict():
@@ -30,13 +22,16 @@ def predict():
             return
 
         img_bytes = file.read()
-        results = get_prediction(img_bytes)
-        results.print()
-        results.save()  # save as results1.jpg, results2.jpg... etc.
-        os.rename("results0.jpg", "static/results0.jpg")
+        img = Image.open(io.BytesIO(img_bytes))
+        img.save('/tmp/tmp.jpg')
 
-        full_filename = os.path.join(app.config['RESULT_FOLDER'], 'results0.jpg')
-        return redirect('static/results0.jpg')
+        # Reopen
+        img = Image.open('/tmp/tmp.jpg')
+        results = model(img, size=640)
+
+        results.display(save=True, save_dir='static')
+        return redirect('static/tmp.jpg')
+
     return render_template('index.html')
 
 
