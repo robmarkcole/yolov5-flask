@@ -1,4 +1,4 @@
 venv/
-*zidane.jpg
-*tmp.jpg
+*.jpg
 .vscode
+*.pt
