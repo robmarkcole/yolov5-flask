@@ -9,30 +9,31 @@ from flask import Flask, jsonify, url_for, render_template, request, redirect
 
 app = Flask(__name__)
 
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True).autoshape()  # force_reload=True
+model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True).autoshape()
 model.eval()
 
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route("/", methods=["GET", "POST"])
 def predict():
-    if request.method == 'POST':
-        if 'file' not in request.files:
+    if request.method == "POST":
+        if "file" not in request.files:
             return redirect(request.url)
-        file = request.files['file']
+        file = request.files["file"]
         if not file:
             return
 
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes))
-        img.save('/tmp/tmp.jpg')
+        img.save("/tmp/tmp.jpg")
 
         # Reopen
-        img = Image.open('/tmp/tmp.jpg')
+        img = Image.open("/tmp/tmp.jpg")
         results = model(img, size=640)
 
-        results.display(save=True, save_dir='static')
-        return redirect('static/tmp.jpg')
+        results.display(save=True, save_dir="static")
+        return redirect("static/tmp.jpg")
 
-    return render_template('index.html')
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
