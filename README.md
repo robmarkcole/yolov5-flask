@@ -2,9 +2,9 @@
 
 * `python3 -m venv venv`
 * `source venv/bin/activate`
-* `pip install -r https://raw.githubusercontent.com/ultralytics/yolov5/master/requirements.txt`
-* `pip install -r requirements.txt`
-* (venv) $ python3 app.py --port 5000
+* `(venv) $ pip install -r https://raw.githubusercontent.com/ultralytics/yolov5/master/requirements.txt`
+* `(venv) $ pip install -r requirements.txt`
+* `(venv) $ python3 app.py --port 5000`
 
 then, visit http://localhost:5000/ in your browser
 
