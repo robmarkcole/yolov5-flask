@@ -2,3 +2,4 @@ venv/
 .vscode
 *.pt
 *.jpg
+static/tmp.jpg
