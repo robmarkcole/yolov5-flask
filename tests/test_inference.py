@@ -1,24 +1,17 @@
-import cv2
+import io
 import torch
 from PIL import Image
 
 # Model
-model = torch.hub.load("ultralytics/yolov5", "yolov5s")
+model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True)
 
-# Images
-for f in ["zidane.jpg"]:  # download 2 images, 'bus.jpg'
-    print(f"Downloading {f}...")
-    torch.hub.download_url_to_file(
-        "https://github.com/ultralytics/yolov5/releases/download/v1.0/" + f, f
-    )
+img = Image.open("zidane.jpg")  # PIL image, succeeds
 
-img1 = Image.open("zidane.jpg")  # PIL image
+# # Reading bytes fails - issue https://github.com/ultralytics/yolov5/issues/2702
+# with open("zidane.jpg", "rb") as file:
+#     img_bytes = file.read()
+# img = Image.open(io.BytesIO(img_bytes))
 
-results = model(img1, size=640)  # includes NMS
-
-# Results
+print(img.size) # validate image
+results = model(img, size=640)  # includes NMS
 results.print()
-# print(results.tolist())
-
-# Data
-# print(results.xyxy[0])  # print img1 predictions (pixels)
