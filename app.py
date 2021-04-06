@@ -20,10 +20,6 @@ def predict():
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes))
 
-        # workaround ValueError: PosixPath('.')
-        img.save("/tmp/tmp.jpg")
-        img = Image.open("/tmp/tmp.jpg")
-
         results = model(img, size=640)
         results.display(save=True, save_dir="static")
         return redirect("static/tmp.jpg")
