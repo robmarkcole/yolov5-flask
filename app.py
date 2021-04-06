@@ -1,17 +1,12 @@
 import argparse
 import io
 import os
-import json
 from PIL import Image
 
 import torch
-from flask import Flask, jsonify, url_for, render_template, request, redirect
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
-
-model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True).autoshape()
-model.eval()
-
 
 @app.route("/", methods=["GET", "POST"])
 def predict():
@@ -24,12 +19,12 @@ def predict():
 
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes))
+
+        # workaround ValueError: PosixPath('.')
         img.save("/tmp/tmp.jpg")
-
-        # Reopen
         img = Image.open("/tmp/tmp.jpg")
-        results = model(img, size=640)
 
+        results = model(img, size=640)
         results.display(save=True, save_dir="static")
         return redirect("static/tmp.jpg")
 
@@ -40,4 +35,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flask app exposing yolov5 models")
     parser.add_argument("--port", default=5000, type=int, help="port number")
     args = parser.parse_args()
-    app.run(host="0.0.0.0", debug=True, port=args.port)
+
+    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True).autoshape() # force_reload = recache latest code
+    model.eval()
+    app.run(host="0.0.0.0", debug=True, port=args.port) # debug=True causes Restarting with stat
