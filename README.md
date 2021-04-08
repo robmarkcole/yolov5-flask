@@ -9,11 +9,11 @@ Simple app consisting of a form where you can upload an image, and see the infer
 then visit http://localhost:5000/ in your browser
 
 <p align="center">
-<img src="https://github.com/robmarkcole/yolov5-flask/blob/master/docs/app_form.jpg" width="350">
+<img src="https://github.com/robmarkcole/yolov5-flask/blob/master/docs/app_form.jpg" width="450">
 </p>
 
 <p align="center">
-<img src="https://github.com/robmarkcole/yolov5-flask/blob/master/docs/app_result.jpg" width="350">
+<img src="https://github.com/robmarkcole/yolov5-flask/blob/master/docs/app_result.jpg" width="450">
 </p>
 
 ## Run & Develop locally
