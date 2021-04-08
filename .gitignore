@@ -1,5 +1,5 @@
 venv/
 .vscode
 *.pt
-*.jpg
+#*.jpg
 static/tmp.jpg
