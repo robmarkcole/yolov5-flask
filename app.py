@@ -12,6 +12,7 @@ from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=["GET", "POST"])
 def predict():
     if request.method == "POST":
@@ -26,7 +27,7 @@ def predict():
 
         results = model(img, size=640)
         results.display(save=True, save_dir="static")
-        return redirect("static/tmp.jpg")
+        return redirect("static/image0.jpg")
 
     return render_template("index.html")
 
@@ -36,6 +37,8 @@ if __name__ == "__main__":
     parser.add_argument("--port", default=5000, type=int, help="port number")
     args = parser.parse_args()
 
-    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True).autoshape() # force_reload = recache latest code
+    model = torch.hub.load(
+        "ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True
+    ).autoshape()  # force_reload = recache latest code
     model.eval()
-    app.run(host="0.0.0.0", port=args.port) # debug=True causes Restarting with stat
+    app.run(host="0.0.0.0", port=args.port)  # debug=True causes Restarting with stat
