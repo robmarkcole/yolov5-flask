@@ -1,3 +1,7 @@
+"""
+Simple app to upload an image via a web form 
+and view the inference results on the image in the browser.
+"""
 import argparse
 import io
 import os
@@ -34,4 +38,4 @@ if __name__ == "__main__":
 
     model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True).autoshape() # force_reload = recache latest code
     model.eval()
-    app.run(host="0.0.0.0", debug=True, port=args.port) # debug=True causes Restarting with stat
+    app.run(host="0.0.0.0", port=args.port) # debug=True causes Restarting with stat

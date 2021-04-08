@@ -12,6 +12,6 @@ with open("zidane.jpg", "rb") as file:
     img_bytes = file.read()
 img = Image.open(io.BytesIO(img_bytes))
 
-print(img.size) # validate image
 results = model(img, size=640)  # includes NMS
-results.print()
+
+print(results.pandas().xyxy[0])
