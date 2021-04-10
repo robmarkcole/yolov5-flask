@@ -1,13 +1,12 @@
 """
-Simple app to upload an image via a web form 
-and view the inference results on the image in the browser.
+Run a rest API exposing the yolov5s object detection model
 """
 import argparse
 import io
 from PIL import Image
 
 import torch
-from flask import Flask, request, jsonify
+from flask import Flask, request
 
 app = Flask(__name__)
 

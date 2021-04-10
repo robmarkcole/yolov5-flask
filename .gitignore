@@ -3,3 +3,4 @@ venv/
 *.pt
 #*.jpg
 static/tmp.jpg
+*.pyc

@@ -6,7 +6,7 @@ Simple app consisting of a form where you can upload an image, and see the infer
 
 `$ python3 app.py --port 5000`
 
-then visit http://localhost:5000/ in your browser
+then visit http://localhost:5000/ in your browser:
 
 <p align="center">
 <img src="https://github.com/robmarkcole/yolov5-flask/blob/master/docs/app_form.jpg" width="450">
@@ -21,9 +21,9 @@ Simple rest API exposing the model for consumption by another service. Run:
 
 `$ python3 restapi.py --port 5000`
 
-Then use cURL:
+Then use [curl](https://curl.se/) to perform a request:
 
-`curl -X POST -F image=@tests/zidane.jpg 'http://localhost:5000/v1/object-detection/yolov5s'`
+`$ curl -X POST -F image=@tests/zidane.jpg 'http://localhost:5000/v1/object-detection/yolov5s'`
 
 The model inference results are returned:
 
