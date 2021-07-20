@@ -24,9 +24,16 @@ def predict():
 
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes))
-
         results = model(img, size=640)
-        results.display(save=True, save_dir="static")
+
+        # for debugging
+        # data = results.pandas().xyxy[0].to_json(orient="records")
+        # return data
+
+        results.render()  # updates results.imgs with boxes and labels
+        for img in results.imgs:
+            img_base64 = Image.fromarray(img)
+            img_base64.save("static/image0.jpg", format="JPEG")
         return redirect("static/image0.jpg")
 
     return render_template("index.html")
