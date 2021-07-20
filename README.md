@@ -4,7 +4,7 @@ This repo contains example apps for exposing the [yolo5](https://github.com/ultr
 ## Web app
 Simple app consisting of a form where you can upload an image, and see the inference result of the model in the browser. Run:
 
-`$ python3 app.py --port 5000`
+`$ python3 webapp.py --port 5000`
 
 then visit http://localhost:5000/ in your browser:
 
@@ -57,12 +57,11 @@ An example python script to perform inference using [requests](https://docs.pyth
 Run locally and dev:
 * `python3 -m venv venv`
 * `source venv/bin/activate`
-* `(venv) $ pip install -r https://raw.githubusercontent.com/ultralytics/yolov5/master/requirements.txt`
 * `(venv) $ pip install -r requirements.txt`
-* `(venv) $ python3 app.py --port 5000`
+* `(venv) $ python3 webapp.py --port 5000`
 
-## docker - WIP
-work in progress
+## Docker
+The example dockerfile shows how to expose the rest API:
 ```
 # Build
 docker build -t yolov5-flask .
