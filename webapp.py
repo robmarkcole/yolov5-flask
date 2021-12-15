@@ -45,7 +45,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     model = torch.hub.load(
-        "ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True
-    ).autoshape()  # force_reload = recache latest code
+        "ultralytics/yolov5", "yolov5s", pretrained=True, force_reload=True, autoshape=True
+    )  # force_reload = recache latest code
     model.eval()
     app.run(host="0.0.0.0", port=args.port)  # debug=True causes Restarting with stat
