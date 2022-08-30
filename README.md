@@ -54,7 +54,7 @@ The model inference results are returned:
 An example python script to perform inference using [requests](https://docs.python-requests.org/en/master/) is given in `tests/test_request.py`
 
 ## Run & Develop locally
-Run locally and dev:
+Run locally for dev, requirements mostly originate from [yolov5](https://github.com/ultralytics/yolov5/blob/master/requirements.txt):
 * `python3 -m venv venv`
 * `source venv/bin/activate`
 * `(venv) $ pip install -r requirements.txt`
