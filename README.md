@@ -51,14 +51,14 @@ The model inference results are returned:
   'ymin': 429.2020568848}]
 ```
 
-An example python script to perform inference using [requests](https://docs.python-requests.org/en/master/) is given in `tests/test_request.py`
-
 ## Run & Develop locally
 Run locally for dev, requirements mostly originate from [yolov5](https://github.com/ultralytics/yolov5/blob/master/requirements.txt):
 * `python3 -m venv venv`
 * `source venv/bin/activate`
 * `(venv) $ pip install -r requirements.txt`
-* `(venv) $ python3 webapp.py --port 5000`
+* `(venv) $ python3 restapi.py --port 5000`
+
+An example python script to perform inference using [requests](https://docs.python-requests.org/en/master/) is given in `tests/test_request.py`
 
 ## Docker
 The example dockerfile shows how to expose the rest API:
