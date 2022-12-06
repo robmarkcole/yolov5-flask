@@ -1,5 +1,4 @@
 flask
-requests
 
 # YOLOv5 requirements
 matplotlib>=3.2.2
