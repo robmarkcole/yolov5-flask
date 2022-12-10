@@ -27,8 +27,8 @@ def predict():
         results = model([img])
 
         results.render()  # updates results.imgs with boxes and labels
-        results.save(save_dir="static/")
-        return redirect("static/image0.jpg")
+        results.save(save_dir="static/images")
+        return redirect("static/images/image0.jpg")
 
     return render_template("index.html")
 
