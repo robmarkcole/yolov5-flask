@@ -6,11 +6,14 @@ import argparse
 import io
 import os
 from PIL import Image
+import datetime
 
 import torch
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
+
+DATETIME_FORMAT = "%Y-%m-%d_%H-%M-%S-%f"
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -27,8 +30,10 @@ def predict():
         results = model([img])
 
         results.render()  # updates results.imgs with boxes and labels
-        results.save(save_dir="static/")
-        return redirect("static/image0.jpg")
+        now_time = datetime.datetime.now().strftime(DATETIME_FORMAT)
+        img_savename = f"static/{now_time}.png"
+        Image.fromarray(results.ims[0]).save(img_savename)
+        return redirect(img_savename)
 
     return render_template("index.html")
 
