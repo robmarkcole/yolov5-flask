@@ -6,7 +6,7 @@ Simple app consisting of a form where you can upload an image, and see the infer
 
 `$ python3 webapp.py --port 5000`
 
-then visit http://localhost:5000/ in your browser:
+then visit [http://localhost:5000/](http://localhost:5000/) in your browser:
 
 <p align="center">
 <img src="docs/app_form.jpg" width="450">
@@ -15,6 +15,8 @@ then visit http://localhost:5000/ in your browser:
 <p align="center">
 <img src="docs/app_result.jpg" width="450">
 </p>
+
+Processed images are saved in the `static` directory with a datetime for the filename.
 
 ## Rest API
 Simple rest API exposing the model for consumption by another service. Run:
